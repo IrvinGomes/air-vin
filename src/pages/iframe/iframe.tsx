@@ -49,7 +49,7 @@ export function IFrame(){
 					<Button variant="contained" style={{marginLeft: '5px'}} type='submit'>Load</Button>
 				</form>
 				<br />
-				<iframe src={url} frameBorder="0" id="myiframe" className="storefrontIframe"></iframe>
+				<iframe src={url} id="myiframe" title='storefrontIframe' className="storefrontIframe"></iframe>
 			</div>
 		</div>
 	)
