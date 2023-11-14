@@ -15,11 +15,10 @@ function receivePostMessage(event:any){
 			}
 		}
 	}
-	else{
-		console.log('Event: ', event.data.payload)
+	else if(event.data && event.data.type === 'analytics'){
+		console.log('Event: ', event.data)
 	}
 }
-//https://bgwp-049.dx.commercecloud.salesforce.com/on/demandware.store/Sites-sfra-storefronts-Site/default/buy-iframe?mv=e28fdc5281d2ad9a9cb1aa1234b53885a93ff79a4489764bc13791804c96d74f37a119008d52321d184f7c46a86495eea641946ed4b6b59da029294d30af74d57fdb34cf2930fa1efda5e8a4f4026c8623f1b7e4d3243cd463d027cf988dc8d3a17b654473c0985d058690d40f0cf15ac31379219cc703eb0f99c8aa316798a3
 
 export function IFrame(){
     const [url, setUrl] =  useState('');
