@@ -1,7 +1,15 @@
 .iframe-wrapper{
+	width: 100%;
     opacity: 1 !important;
 }
 .form{
 	width: 100%;
 	display: flex;
+}
+.storefrontIframe{
+	width: 100%;
+	min-height: 300px;
+	border: none;
+	background-color: white;
+	height: 0;
 }

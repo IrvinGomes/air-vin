@@ -3,7 +3,7 @@
     width: auto;
     transition: 1s;
 }
-.closed{
-    width: 50px;
-    transition: 1s;
+.sidebar-wrapper.closed{
+    margin-left: -80px;
+    transition-duration: 0.5s;
 }
