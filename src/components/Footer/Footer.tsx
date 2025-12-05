@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { FooterProps } from "./Footer.type";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 export const Footer: FC<FooterProps> = () => {
 
