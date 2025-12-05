@@ -5,6 +5,10 @@ body,
     height: 100%;
 }
 
+.storefrontIframe{
+    min-height: 500px;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 7px;
