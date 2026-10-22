@@ -4,21 +4,16 @@ import { FC, useEffect, useState } from "react";
 function receivePostMessage(event: MessageEvent) {
   if (!event.data || typeof event.data !== "object") return;
 
-  const { type, height, width } = event.data;
+  const { type, height } = event.data;
 
   if (type === "iframeHeight" || type === "resize") {
     const iframe = document.getElementById("myiframe") as HTMLIFrameElement | null;
     if (!iframe) return;
 
-    const nextHeight = Number(height);
-    const nextWidth = Number(width);
+    const newHeight = Number(height);
 
-    if (!Number.isNaN(nextHeight) && nextHeight > 0) {
-      iframe.style.height = `${nextHeight}px`;
-    }
-
-    if (!Number.isNaN(nextWidth) && nextWidth > 0) {
-      iframe.style.width = `${nextWidth}px`;
+    if (!Number.isNaN(newHeight) && newHeight > 0) {
+      iframe.style.height = `${newHeight}px`;
     }
   }
 }
