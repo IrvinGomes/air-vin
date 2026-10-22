@@ -1,21 +1,22 @@
 import { Box, Button, TextField } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 
-function receivePostMessage(event: MessageEvent) {
-  if (!event.data || typeof event.data !== "object") return;
-
-  const { type, height } = event.data;
-
-  if (type === "iframeHeight" || type === "resize") {
-    const iframe = document.getElementById("myiframe") as HTMLIFrameElement | null;
-    if (!iframe) return;
-
-    const newHeight = Number(height);
-
-    if (!Number.isNaN(newHeight) && newHeight > 0) {
-      iframe.style.height = `${newHeight}px`;
-    }
-  }
+function receivePostMessage(event:any){
+    console.log(event)
+	if (event.data && event.data.type === "iframeHeight") {
+		const newHeight = event.data.height;
+		// Set the iframe's height to the received height
+		const iframe = document.getElementById('myiframe');
+		if (iframe) {
+			if(newHeight !== iframe.style.height){
+				iframe.style.height = 'none';
+				iframe.style.height = newHeight + 'px';
+			}
+		}
+	}
+	else{
+		console.log('Event: ', event.data)
+	}
 }
 
 export const IFramePage: FC = () => {
@@ -26,21 +27,19 @@ export const IFramePage: FC = () => {
     const form = e.target;
     const formData = new FormData(form);
 
+    // Or you can work with it as a plain object:
     const formJson = Object.fromEntries(formData.entries());
     setUrl(formJson.url.toString());
   };
 
   useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
+    window.addEventListener("message", (event) => {
       receivePostMessage(event);
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    return () => {
-      window.removeEventListener("message", handleMessage);
-    };
-  }, []);
+    });
+    return window.removeEventListener("message", (event) => {
+      receivePostMessage(event);
+    });
+  });
 
   return (
     <Box
@@ -71,7 +70,6 @@ export const IFramePage: FC = () => {
         title="storefrontIframe"
         className="storefrontIframe"
         frameBorder="0"
-        style={{ width: "100%", height: "100%", border: "none" }}
       ></iframe>
     </Box>
   );
