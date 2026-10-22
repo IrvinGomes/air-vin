@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 
 function receivePostMessage(event:any){
     console.log(event)
-	if (event.data && (event.data.type === "iframeHeight" || event.data.type === "resize")) {
+	if (event.data && event.data.type === "iframeHeight") {
 		const newHeight = event.data.height;
 		// Set the iframe's height to the received height
 		const iframe = document.getElementById('myiframe');
